@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .order-box {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .order-box h4 {
+            color: #6A0D91;
+        }
+        .price-input {
+            display: none; /* Hidden by default */
+            margin-top: 10px;
+        }
+        .btn-accept, .btn-reject {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+        }
+        .btn-accept {
+            background-color: #28a745;
+        }
+        .btn-reject {
+            background-color: #dc3545;
+        }
+        .btn-confirm, .btn-cancel {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #6A0D91;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="my-4">Vendor Orders</h2>
+
+        <!-- Loop through the orders using Jinja2 -->
+        {% for key, value in orders.items() %}
+            <div class="order-box" id="order-{{ key }}">
+                <h4>Order #{{ key }}</h4>
+                <p><strong>Type:</strong> {{ value[0] }}</p>
+                <p><strong>Product:</strong> {{ value[1] }}</p>
+                <p><strong>Place:</strong> {{ value[2] }}</p>
+
+                <!-- Action buttons -->
+                <button class="btn-accept" onclick="acceptOrder({{ key }})">Accept</button>
+                <button class="btn-reject" onclick="rejectOrder({{ key }})">Reject</button>
+
+                <!-- Price input form (initially hidden) -->
+                <form action="/pushdetailstodb" method="POST" class="price-input" id="price-input-{{ key }}">
+                    <input type="hidden" name="order_id" value="{{ key }}">
+                    <input type="number" class="form-control" name="price" placeholder="Enter your price" required>
+                    <button type="submit" class="btn-confirm">Confirm</button>
+                    <button type="button" class="btn-cancel" onclick="cancelOrder({{ key }})">Cancel</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        // Show the price input when "Accept" is clicked
+        function acceptOrder(orderId) {
+            document.getElementById('price-input-' + orderId).style.display = 'block';
+        }
+
+        // Remove the order from the page when "Reject" is clicked
+        function rejectOrder(orderId) {
+            document.getElementById('order-' + orderId).remove();
+            alert('Order ' + orderId + ' has been rejected.');
+            // Optionally, add logic to update the backend
+        }
+
+        // Hide the price input when "Cancel" is clicked
+        function cancelOrder(orderId) {
+            document.getElementById('price-input-' + orderId).style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

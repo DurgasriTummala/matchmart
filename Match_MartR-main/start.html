@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatchMart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between; /* Align items to the ends */
+            padding: 10px 20px;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo img {
+            height: 40px; /* Adjust logo image size */
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px; /* Adjusted margin for better spacing */
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            display: flex;
+            margin-top: 60px; /* Adjust to accommodate the fixed navbar */
+            padding: 20px;
+            height: 500px;
+
+            background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
+            background-color: #cce4f7;
+        }
+
+        .text-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-size: 50px;
+            font-weight: bold;
+            color: #333;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .text-item {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
+            font-size: 50px;
+        }
+
+        .text-item.show {
+            opacity: 1;
+            animation: textZoom 1s ease-in-out forwards;
+        }
+
+        /* Text Animation */
+        @keyframes textZoom {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .carousel-images {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .carousel-images img {
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
+        }
+
+        .carousel-images img.show {
+            opacity: 1;
+        }
+
+        /* Feature Boxes */
+        .feature-boxes {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            border: 3px solid #022140
+        }
+
+        .box {
+            width: 380px;
+            height: 250px;
+            border: 3px solid #022140
+            border: 3px solid #1E90FF;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .box h3 {
+            margin: 0 0 10px;
+            font-size: 28px;
+            color: #040e3f;
+            font-weight: bold;
+        }
+
+        .box p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .box .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #003366;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .box .btn:hover {
+            background-color: #001f3f;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+        }
+
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
+            background-color: #1e90ff; /* Dark blue background */
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .stats-item, .rating-container {
+            flex: 1;
+            background-color: #841670; /* Dark blue background for items */
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        .stats-item h2 {
+            margin: 0;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .rating-container {
+            background-color: #841670;
+        }
+
+        .rating-stars {
+            font-size: 36px;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .rating-stars .empty-star {
+            color: #ddd;
+        }
+
+        .rating-stars .half-star {
+            position: relative;
+            display: inline-block;
+        }
+
+        .rating-stars .half-star:before {
+            content: '★';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            overflow: hidden;
+            color: #FFD700;
+        }
+        /* Carousel Images */
+.carousel-images {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden; /* Ensure no overflow from the images */
+}
+
+.carousel-images img {
+    width: 470px; /* Adjust size as needed */
+    height: 470px; /* Adjust size as needed */
+    border-radius: 50%; /* Makes the images circular */
+    object-fit: cover; /* Ensures images cover the circle without distortion */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    position: absolute;
+}
+/* Navigation Bar */
+.navbar {
+    background-color: #ffffff; /* White background */
+    color: #003366; /* Dark blue text color */
+    display: flex;
+    justify-content: space-between; /* Align items to the ends */
+    padding: 10px 20px;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #003366; /* Optional: Add a dark blue border at the bottom */
+}
+
+.navbar .logo img {
+    height: 40px; /* Adjust logo image size */
+}
+
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px; /* Adjusted margin for better spacing */
+}
+
+.nav-links a {
+    color: #003366; /* Dark blue color */
+    text-decoration: none;
+    font-weight: bold; /* Bold text */
+    font-size: 18px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+/* Feature Boxes Container */
+.feature-boxes {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    padding: 20px; /* Add padding around the boxes */
+    background-image: url('path-to-your-background-image.jpg'); /* Path to your background image */
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent repeating of the background image */
+    border-radius: 10px; /* Optional: Round the corners of the container */
+}
+
+/* Feature Boxes */
+.box {
+    width: 400px;
+    height: 300px;
+    background-color: rgba(237, 240, 240, 0.9); /* Slightly transparent background color */
+    border: 3px solid #022140;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3IqjiZrPvq8h9PY9skcRJA1RVIY6BeZN7Tw&s" alt="MatchMart Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Vendor</a></li>
+            <li><a href="#">Client</a></li>
+        </ul>
+    </nav>
+
+    <!-- Carousel with Images and Text -->
+    <div class="carousel-container">
+        <div class="text-container">
+            <div class="text-item show">
+                <i class="fas fa-shopping-cart"></i> <!-- Shopping cart icon for Snap and Shop -->
+                <div>Snap and Shop</div>
+                <div>Find Best Deals</div>
+            </div>
+            <div class="text-item">
+                <i class="fas fa-box-open"></i> <!-- Box icon for Discover New Products -->
+                <div>Discover New Products</div>
+                <div>Shop Easily</div>
+            </div>
+            <div class="text-item">
+                <i class="fas fa-tags"></i> <!-- Tags icon for Explore New Trends -->
+                <div>Explore New Trends</div>
+                <div>Save Money Today</div>
+            </div>
+            <div class="text-item">
+                <i class="fas fa-bell"></i> <!-- Bell icon for Get The Latest Offers -->
+                <div>Get The Latest Offers</div>
+                <div>Never Miss Out</div>
+            </div>
+        </div>
+        <div class="carousel-images">
+            <img src="https://img.freepik.com/free-photo/concept-vacation-finance-happy-man-shopper-looking-shopping-bags-satisfied-showing-credit-card-standing-against-yellow-background_1258-73644.jpg" alt="Image 1" class="show">
+            <img src="https://img.freepik.com/premium-photo/woman-shopper-happy-with-phone-grocery-department-browsing-shopping-list-online-app-choosing_321831-14101.jpg" alt="Image 2">
+            <img src="https://thumbnails.yayimages.com/1600/10/ef0/10ef00f4.jpg" alt="Image 3">
+            <img src="https://www.fatbit.com/fab/wp-content/uploads/2020/06/onlne-grocery-business.png" alt="Image 3">
+        </div>
+    </div>
+
+    <!-- Feature Boxes -->
+    <div class="feature-boxes">
+        <div class="box">
+            <h3>Sign Up</h3>
+            <p>Sign Up as Vendor.
+                Join our network of trusted vendors.
+            </p>
+            <a href="/suv" class="btn">Sign up</a>
+        </div>
+        <div class="box">
+            <h3>Find Services
+            </h3>
+            <p>Locate the best vendors near you.
+                Happy Shopping.</p>
+            <a href="/login" class="btn">Find Services</a>
+        </div>
+        <div class="box">
+            <h3>Learn More</h3>
+            <p>Discover more about our services.
+                Visit again to our website
+            </p>
+            <a href="#" class="btn">Explore Vendors</a>
+        </div>
+    </div>
+
+    <!-- Statistics Bar -->
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stats-item" id="vendor-count">
+                <h2>1000</h2>
+                <p>Vendors</p>
+            </div>
+            <div class="rating-container">
+                <div class="rating-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star empty-star"></i>
+                </div>
+                <p>4.0 Rating</p>
+            </div>
+            <div class="stats-item" id="customer-count">
+                <h2>3000</h2>
+                <p>Customers</p>
+            </div>
+        </div>
+    </div>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About Us - MatchMart</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+            .about-section {
+                padding: 40px;
+                background-color: #cce4f7;
+                text-align: center;
+                font-family: Arial, sans-serif;
+            }
+            .about-section h2 {
+                color: #2c3e50;
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+            .about-section p {
+                font-size: 16px;
+                color: #555;
+                line-height: 1.5;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            .social-icons {
+                margin-top: 20px;
+            }
+            .social-icons a {
+                margin: 0 12px;
+                color: #2c3e50;
+                font-size: 24px;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            .social-icons a:hover {
+                color: #007bff;
+            }
+            .contact-info {
+                margin-top: 25px;
+                font-size: 17px;
+            }
+            .contact-info a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+        </style>
+    </head>
+    <body>
+
+    <div class="about-section">
+        <h2>About MATCHMART</h2>
+        <p>
+            MatchMart connects users with vendors in their local area. Upload an image of the product and select your location to discover where it’s available!
+        </p>
+
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://telegram.org" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="mailto:contact@quickpick.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="tel:+1234567890" target="_blank" title="Call Us"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/1234567890" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+
+        <div class="contact-info">
+            <p>
+                Email: <a href="mailto:contact@quickpick.com">contact@quickpick.com</a><br>
+                Call: <a href="tel:+1234567890">+123-456-7890</a><br>
+                WhatsApp: <a href="https://wa.me/1234567890">+123-456-7890</a>
+            </p>
+        </div>
+    </div>
+
+    </body>
+
+    <!-- JS Libraries -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript for Carousel Text and Images Animation
+        const textItems = document.querySelectorAll('.text-item');
+        const imageItems = document.querySelectorAll('.carousel-images img');
+        let textIndex = 0;
+        let imageIndex = 0;
+
+        function showNextItem() {
+            textItems.forEach((item, index) => item.classList.toggle('show', index === textIndex));
+            imageItems.forEach((item, index) => item.classList.toggle('show', index === imageIndex));
+            textIndex = (textIndex + 1) % textItems.length;
+            imageIndex = (imageIndex + 1) % imageItems.length;
+        }
+
+        setInterval(showNextItem, 3000); // Change every 3 seconds
+
+        // JavaScript for Statistics Bar Animation
+        let vendorCount = 0;
+        let customerCount = 0;
+        const vendorCountElement = document.getElementById('vendor-count').querySelector('h2');
+        const customerCountElement = document.getElementById('customer-count').querySelector('h2');
+
+        function updateStatistics() {
+            if (vendorCount < 1000) {
+                vendorCount += 10;
+                vendorCountElement.textContent = vendorCount;
+            }
+            if (customerCount < 3300) {
+                customerCount += 30;
+                customerCountElement.textContent = customerCount;
+            }
+            if (vendorCount >= 1000 && customerCount >= 3300) {
+                clearInterval(statsInterval);
+            }
+        }
+
+        const statsInterval = setInterval(updateStatistics, 50); // Update every 50ms
+    </script>
+</body>
+</html>

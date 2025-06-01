@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Vendor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(131deg, rgba(186, 186, 186, 0.01) 0%, rgba(186, 186, 186, 0.01) 16.667%,rgba(192, 192, 192, 0.01) 16.667%, rgba(192, 192, 192, 0.01) 33.334%,rgba(48, 48, 48, 0.01) 33.334%, rgba(48, 48, 48, 0.01) 50.001000000000005%,rgba(33, 33, 33, 0.01) 50.001%, rgba(33, 33, 33, 0.01) 66.668%,rgba(182, 182, 182, 0.01) 66.668%, rgba(182, 182, 182, 0.01) 83.33500000000001%,rgba(211, 211, 211, 0.01) 83.335%, rgba(211, 211, 211, 0.01) 100.002%),linear-gradient(148deg, rgba(48, 48, 48, 0.01) 0%, rgba(48, 48, 48, 0.01) 16.667%,rgba(178, 178, 178, 0.01) 16.667%, rgba(178, 178, 178, 0.01) 33.334%,rgba(192, 192, 192, 0.01) 33.334%, rgba(192, 192, 192, 0.01) 50.001000000000005%,rgba(237, 237, 237, 0.01) 50.001%, rgba(237, 237, 237, 0.01) 66.668%,rgba(194, 194, 194, 0.01) 66.668%, rgba(194, 194, 194, 0.01) 83.33500000000001%,rgba(227, 227, 227, 0.01) 83.335%, rgba(227, 227, 227, 0.01) 100.002%),linear-gradient(138deg, rgba(146, 146, 146, 0.03) 0%, rgba(146, 146, 146, 0.03) 25%,rgba(33, 33, 33, 0.03) 25%, rgba(33, 33, 33, 0.03) 50%,rgba(46, 46, 46, 0.03) 50%, rgba(46, 46, 46, 0.03) 75%,rgba(172, 172, 172, 0.03) 75%, rgba(172, 172, 172, 0.03) 100%),linear-gradient(38deg, rgba(3, 3, 3, 0.03) 0%, rgba(3, 3, 3, 0.03) 16.667%,rgba(28, 28, 28, 0.03) 16.667%, rgba(28, 28, 28, 0.03) 33.334%,rgba(236, 236, 236, 0.03) 33.334%, rgba(236, 236, 236, 0.03) 50.001000000000005%,rgba(3, 3, 3, 0.03) 50.001%, rgba(3, 3, 3, 0.03) 66.668%,rgba(207, 207, 207, 0.03) 66.668%, rgba(207, 207, 207, 0.03) 83.33500000000001%,rgba(183, 183, 183, 0.03) 83.335%, rgba(183, 183, 183, 0.03) 100.002%),linear-gradient(145deg, rgba(20, 20, 20, 0.02) 0%, rgba(20, 20, 20, 0.02) 20%,rgba(4, 4, 4, 0.02) 20%, rgba(4, 4, 4, 0.02) 40%,rgba(194, 194, 194, 0.02) 40%, rgba(194, 194, 194, 0.02) 60%,rgba(34, 34, 34, 0.02) 60%, rgba(34, 34, 34, 0.02) 80%,rgba(71, 71, 71, 0.02) 80%, rgba(71, 71, 71, 0.02) 100%),linear-gradient(78deg, rgba(190, 190, 190, 0.02) 0%, rgba(190, 190, 190, 0.02) 20%,rgba(95, 95, 95, 0.02) 20%, rgba(95, 95, 95, 0.02) 40%,rgba(71, 71, 71, 0.02) 40%, rgba(71, 71, 71, 0.02) 60%,rgba(7, 7, 7, 0.02) 60%, rgba(7, 7, 7, 0.02) 80%,rgba(130, 130, 130, 0.02) 80%, rgba(130, 130, 130, 0.02) 100%),linear-gradient(293deg, rgba(213, 213, 213, 0.03) 0%, rgba(213, 213, 213, 0.03) 20%,rgba(220, 220, 220, 0.03) 20%, rgba(220, 220, 220, 0.03) 40%,rgba(146, 146, 146, 0.03) 40%, rgba(146, 146, 146, 0.03) 60%,rgba(57, 57, 57, 0.03) 60%, rgba(57, 57, 57, 0.03) 80%,rgba(120, 120, 120, 0.03) 80%, rgba(120, 120, 120, 0.03) 100%),linear-gradient(90deg, rgb(225, 15, 180),rgb(78, 198, 243));
+    background-size: cover;
+    background-attachment: fixed;
+    color: #FFFFFF;
+}
+
+/* Navigation Bar */
+
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #ffffff; /* White background */
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #6a11cb; /* Optional border for contrast */
+
+        }
+
+        .navbar h2 {
+            color: #6a11cb; /* Text color matching gradient */
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .navbar a {
+            color: #333333; /* Dark text color for links */
+            padding: 10px 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+
+
+        }
+
+        .navbar a:hover {
+            background-color: #6a11cb; /* Hover effect with gradient color */
+            color: #ffffff; /* White text on hover */
+        }
+
+
+
+/* Main Section */
+.main-section {
+    padding: 50px 20px;
+    text-align: center;
+
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.main-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+}
+
+.main-section p {
+    font-size: 1.2rem;
+}
+
+/* Vendor Gallery */
+.vendor-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.vendor-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Softer shadow */
+    transition: transform 0.3s ease-in-out;
+}
+
+.vendor-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.vendor-card:hover img {
+    transform: scale(1.05); /* Subtle zoom effect */
+}
+
+.vendor-card .overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Darker overlay */
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    border-radius: 0 0 15px 15px;
+}
+
+.vendor-card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Search Bar */
+.search-bar input[type="text"] {
+    width: 70%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+.search-bar button {
+    padding: 15px 20px;
+    background-color: #6e45e2; /* Purple button */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.search-bar button:hover {
+    background-color: #9B4F9F; /* Light purple on hover */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .main-section {
+        padding: 30px 10px;
+    }
+
+    .vendor-card {
+        margin-bottom: 20px;
+    }
+
+    .navbar a {
+        padding: 8px 10px;
+    }
+
+    .search-bar input[type="text"],
+    .search-bar button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+
+}
+
+    /* Navigation Bar */
+    .navbar {
+        background-color: #ffffff; /* White background */
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #000000; /* Dark border */
+    }
+
+    .navbar h2 {
+        color: #6a11cb; /* Text color matching gradient */
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: bold; /* Make MatchMart bold */
+    }
+
+    .navbar a {
+        color: #333333; /* Dark text color for links */
+        padding: 10px 15px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .navbar a:hover {
+        background-color: #6a11cb; /* Hover effect with gradient color */
+        color: #ffffff; /* White text on hover */
+    }
+
+    .navbar {
+        background-color: #ffffff; /* White background */
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 2px solid #000000; /* Dark rectangular border */
+        border-radius: 5px; /* Optional: Slightly rounded corners */
+    }
+
+    .navbar h2 {
+        color: #6a11cb; /* Text color matching gradient */
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: bold; /* Make MatchMart bold */
+    }
+
+    .navbar a {
+        color: #333333; /* Dark text color for links */
+        padding: 10px 15px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .navbar a:hover {
+        background-color: #6a11cb; /* Hover effect with gradient color */
+        color: #ffffff; /* White text on hover */
+    }
+
+
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Navigation Bar -->
+    <div class="navbar d-flex flex-row">
+        <h2>MatchMart</h2>
+        <div class="d-flex flex-row justify-content-end">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Vendor</a>
+            <a href="#">Client</a>
+            <a href="#">Sign Up</a>
+            <a href="/show_orders?email={{email}}">Your Orders</a>
+        </div>
+    </div>
+
+    <!-- Main Section -->
+    <div class="main-section">
+        <h1>Find a Vendor</h1>
+        <p>Search for the best vendors in your area for all your daily needs.</p>
+
+        <!-- Search Bar -->
+
+
+
+        <!-- Vendors Gallery -->
+        <div class="vendor-gallery">
+            <!-- Vendor Card 1 -->
+            <div class="vendor-card" >
+                <a href="/perform_fruits?email={{email}}&type=Fresh%20Fruits">
+                    <img src="https://media.licdn.com/dms/image/D5612AQGAk2Y59QAhhg/article-cover_image-shrink_720_1280/0/1709027102524?e=2147483647&v=beta&t=ecBTeuOlEoZP8gYSgnEc7-pCnTk5OlxhXEybp1vdQ8A" alt="Vendor 1">
+                    <div class="overlay">
+                       <h3>Fresh Fruits</h3>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Vendor Card 2 -->
+            <div class="vendor-card">
+                <a href="/perform_fruits?email={{email}}&type=Vegetable%20Market">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdWmpBbTPbH_nylKrUPUJdrYAetm6NTwY_qg&s" alt="Vendor 2">
+                    <div class="overlay">
+                        <h3>Vegetable Market</h3>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Vendor Card 3 -->
+            <div class="vendor-card">
+                <a href="/perform_fruits?email={{email}}&type=Local%20Groceries">
+                    <img src="https://content.jdmagicbox.com/comp/eluru/r2/9999p8812.8812.121126090651.c1r2/catalogue/more-for-you-eluru-ho-eluru-supermarkets-senrkim.jpg" alt="Vendor 3">
+                    <div class="overlay">
+                        <h3>Local Groceries</h3>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Vendor Card 4 -->
+            <div class="vendor-card">
+                <a href="/perform_fruits?email={{email}}&type=Bakery%20and%20Pastry">
+                    <img src="https://media.istockphoto.com/id/497959594/photo/fresh-cakes.jpg?s=612x612&w=0&k=20&c=T1vp7QPbg6BY3GE-qwg-i_SqVpstyHBMIwnGakdTTek=" alt="Vendor 4">
+                    <div class="overlay">
+                        <h3>Bakery & Pastry</h3>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Vendor Card 5 -->
+            <div class="vendor-card">
+                <a href="/perform_fruits?email={{email}}&type=Home%20Essentials">
+                    <img src="https://www.simplybe.co.uk/content/SB_FF_03022022_Home_1_C_ba63ee2eb9_ba68dd43f5.png" alt="Vendor 5">
+                    <div class="overlay">
+                        <h3>Home Essentials</h3>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Vendor Card 6 -->
+            <div class="vendor-card">
+                <a href="/perform_fruits?email={{email}}&type=Clothing%20and%20Fashion">
+                    <img src="https://sepiastories.in/wp-content/uploads/2022/11/women-clothing-store-2.webp" alt="Vendor 6">
+                    <div class="overlay">
+                        <h3>Clothing & Fashion</h3>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Vendor Card 7 -->
+            <div class="vendor-card">
+                <a href="/perform_fruits?email={{email}}&type=Pharmacy">
+                    <img src="https://images.theconversation.com/files/137181/original/image-20160909-13353-19x3vc.jpg?ixlib=rb-4.1.0&rect=0%2C359%2C2995%2C1455&q=45&auto=format&w=1356&h=668&fit=crop" alt="Vendor 7">
+                    <div class="overlay">
+                        <h3>Pharmacy</h3>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Vendor Card 8 -->
+            <div class="vendor-card">
+                <a href="/perform_fruits?email={{email}}&type=Sports%20and%20Gear">
+                    <img src="https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg" alt="Vendor 8">
+                    <div class="overlay">
+                        <h3>Sports Gear</h3>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Vendor Card 9 -->
+            <div class="vendor-card">
+                <a href="/perform_fruits?email={{email}}&type=Fancy%20Items">
+                    <img src="https://c8.alamy.com/comp/J39J2H/st-ives-cornwall-uk-april-3-2017-colourful-homeware-items-for-sale-J39J2H.jpg" alt="Vendor 9">
+                    <div class="overlay">
+                        <h3>Fancy Items</h3>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function performSearch() {
+            var searchInput = document.getElementById('search-input').value.toLowerCase();
+            var vendorCards = document.querySelectorAll('.vendor-card');
+
+            vendorCards.forEach(function(card) {
+                var vendorName = card.querySelector('.overlay h3').textContent.toLowerCase();
+                if (vendorName.includes(searchInput)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
